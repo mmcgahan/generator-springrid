@@ -5,7 +5,8 @@
         "requirejs": "~2.1.8",
         "modernizr": "~2.6.2",
         "jquery": "~2.0.x",
-        "handlebars": "~1.0.0"
+        "handlebars": "~1.0.0",
+        "sass-foundation": ">=0.1.0"
     }
 }
 
