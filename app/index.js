@@ -8,6 +8,8 @@
         config = config;  // do something with config?
         yeoman.generators.Base.apply(this, arguments);
 
+        this.indexFile = this.readFileAsString(path.join(this.sourceRoot(), 'index.html'));
+
         this.on('end', function () {
             this.installDependencies({ skipInstall: options['skip-install'] });
         });
