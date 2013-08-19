@@ -1,0 +1,9 @@
+<div class="gridContainer">
+    {{#each gridRows }}
+    <div class="gridRow">
+        {{#each gridCols }}
+        <div class="gridCol{{ colspan }}">{{{ colContent }}}</div>
+        {{/each}}
+    </div>
+    {{/each}}
+</div>
