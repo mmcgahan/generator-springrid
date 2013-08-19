@@ -152,7 +152,8 @@
             'scripts/main.js'
         ]);  // this does some interesting stuff - look into it, particularly for requireJS down below.
 
-        this.indexFile = this.appendFiles({  // this sets up usemin block - compile things for build
+        this.indexFile = this.appendFiles({
+            // this sets up usemin block - compile things for build
             html: this.indexFile,
             fileType: 'js',
             optimizedPath: 'scripts/coffee.js',
@@ -162,19 +163,12 @@
     };
 
     StaticGenerator.prototype.requirejs = function requirejs() {
-        this.indexFile = this.appendScripts(this.indexFile, 'scripts/main.js', ['bower_components/requirejs/require.js'], {
-            'data-main': 'scripts/main'
-        });
-
-        // add a basic amd module
-        this.write('app/scripts/app.js', [
-            '/*global define */',
-            'define([], function () {',
-            '    \'use strict\';\n',
-            '    return \'\\\'Allo \\\'Allo!\';',
-            '});'
-        ].join('\n'));
-
+        this.indexFile = this.appendScripts(
+            this.indexFile,
+            'scripts/main.js',
+            ['bower_components/requirejs/require.js'],
+            { 'data-main': 'scripts/main' }
+        );
         this.copy('require_main.js', 'app/scripts/main.js');
     };
 
@@ -187,12 +181,17 @@
             'baseFontSans': this.baseFontSans
         });
     };
+
+    StaticGenerator.prototype.styles = function styles() {
+        // set this up to use sass-foundation base style plus additional local style sheet,
+        // concat for build - appendStyles will insert into <head>
+        this.appendStyles(this.indexFile, 'styles/style.css', ['styles/style.css']);
+    };
     StaticGenerator.prototype.app = function app() {
         this.mkdir('app');
         this.mkdir('app/scripts');
         this.mkdir('app/styles');
         this.mkdir('app/images');
-        this.mkdir('app/templates');
         this.write('app/index.html', this.indexFile);
         this.write('app/styles/_config.sass', this.sassConfig);
     };
