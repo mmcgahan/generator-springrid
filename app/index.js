@@ -26,7 +26,7 @@
             { 'name': 'indexFile', 'source': 'html/index.handlebars' },
             { 'name': 'grid', 'source': 'html/grid.handlebars' },
             { 'name': 'googleAnalytics', 'source': 'html/googleAnalytics.handlebars' },
-            { 'name': 'sassConfig', 'source': 'sass/config.handlebars.sass' }
+            { 'name': 'sassConfig', 'source': 'sass/config.handlebars.scss' }
         ];
         this.templates = {};
 
@@ -169,7 +169,7 @@
             ['bower_components/requirejs/require.js'],
             { 'data-main': 'scripts/main' }
         );
-        this.copy('require_main.js', 'app/scripts/main.js');
+        this.copy('scripts/main.js', 'app/scripts/main.js');
     };
 
     StaticGenerator.prototype.writeSassConfig = function sassConfig() {
@@ -182,10 +182,10 @@
         });
     };
 
-    StaticGenerator.prototype.styles = function styles() {
+    StaticGenerator.prototype.appendStyle = function appendStyle() {
         // set this up to use sass-foundation base style plus additional local style sheet,
         // concat for build - appendStyles will insert into <head>
-        this.appendStyles(this.indexFile, 'styles/style.css', ['styles/style.css']);
+        this.indexFile = this.appendStyles(this.indexFile, 'styles/style.css', ['styles/style.css'], {});
     };
     StaticGenerator.prototype.app = function app() {
         this.mkdir('app');
@@ -193,7 +193,8 @@
         this.mkdir('app/styles');
         this.mkdir('app/images');
         this.write('app/index.html', this.indexFile);
-        this.write('app/styles/_config.sass', this.sassConfig);
+        this.write('app/styles/_config.scss', this.sassConfig);
+        this.copy('sass/style.scss', 'app/sass/style.scss');
     };
 
 }(require, module));
