@@ -25,6 +25,7 @@
         this.templateMaps = [
             { 'name': 'indexFile', 'source': 'html/index.handlebars' },
             { 'name': 'grid', 'source': 'html/grid.handlebars' },
+            { 'name': 'googleAnalytics', 'source': 'html/googleAnalytics.handlebars' },
             { 'name': 'sassConfig', 'source': 'sass/config.handlebars.sass' }
         ];
         this.templates = {};
@@ -37,6 +38,7 @@
         }.bind(this));
 
         handlebars.registerPartial('grid', this.templates.grid);
+        handlebars.registerPartial('googleAnalytics', this.templates.googleAnalytics);
 
         this.on('end', function () {
             // this is how bower install and npm install are called
@@ -69,6 +71,11 @@
             default: 12
         }, {
             // set up handlebars template to build this SCSS config file
+            name: 'GAcode',
+            message: 'Google Analytics code:',
+            default: false
+        }, {
+            // set up handlebars template to build this SCSS config file
             name: 'baseFontSerif',
             message: 'Base serif font family:',
             default: 'Georgia'
@@ -82,6 +89,7 @@
         this.prompt(prompts, function (props) {
             this.sitename = props.sitename;
             this.gridCols = props.gridCols;
+            this.GAcode = props.GAcode;
             this.baseFontSerif = props.baseFontSerif;
             this.baseFontSans = props.baseFontSans;
             callback();
