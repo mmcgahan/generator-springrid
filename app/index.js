@@ -169,6 +169,14 @@
             ['bower_components/requirejs/require.js'],
             { 'data-main': 'scripts/main' }
         );
+        // add a basic amd module
+        this.write('app/scripts/app.js', [
+            '/*global define */',
+            'define([], function () {',
+            '    \'use strict\';\n',
+            '    return \'\\\'Allo \\\'Allo!\';',
+            '});'
+        ].join('\n'));
         this.copy('scripts/main.js', 'app/scripts/main.js');
     };
 

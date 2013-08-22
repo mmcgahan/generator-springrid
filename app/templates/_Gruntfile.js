@@ -59,16 +59,16 @@
                         }
                     }
                 },
-                // test: {
-                //     options: {
-                //         middleware: function (connect) {
-                //             return [
-                //                 mountFolder(connect, '.tmp'),
-                //                 mountFolder(connect, 'test')
-                //             ];
-                //         }
-                //     }
-                // },
+                test: {
+                    options: {
+                        middleware: function (connect) {
+                            return [
+                                mountFolder(connect, '.tmp'),
+                                mountFolder(connect, 'test')
+                            ];
+                        }
+                    }
+                },
                 dist: {
                     options: {
                         middleware: function (connect) {
@@ -110,22 +110,12 @@
             },
             compass: {
                 options: {
-                    sassDir: '<%%= yeoman.app %>/styles',
-                    cssDir: '.tmp/styles',
-                    generatedImagesDir: '.tmp/images/generated',
-                    imagesDir: '<%%= yeoman.app %>/images',
-                    javascriptsDir: '<%%= yeoman.app %>/scripts',
-                    fontsDir: '<%%= yeoman.app %>/styles/fonts',
-                    importPath: '<%%= yeoman.app %>/bower_components',
-                    httpImagesPath: '/images',
-                    httpGeneratedImagesPath: '/images/generated',
-                    httpFontsPath: '/styles/fonts',
-                    relativeAssets: false
+                    config: '<%%= yeoman.app %>/bower_components/config.rb'
                 },
                 dist: {
-                    options: {
-                        generatedImagesDir: '<%%= yeoman.dist %>/images/generated'
-                    }
+                    // options: {
+                    //     generatedImagesDir: '<%%= yeoman.dist %>/images/generated'
+                    // }
                 },
                 server: {
                     options: {
@@ -309,11 +299,11 @@
             ]);
         });
 
-        // grunt.registerTask('test', [
-        //     'clean:server',
-        //     'concurrent:test',
-        //     'connect:test',
-        // ]);
+        grunt.registerTask('test', [
+            'clean:server',
+            'concurrent:test',
+            'connect:test',
+        ]);
 
         grunt.registerTask('build', [
             'clean:dist',
