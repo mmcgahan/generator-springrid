@@ -1,5 +1,5 @@
-# Generator-static
-[![Build Status](https://secure.travis-ci.org/mmcgahan/generator-static.png?branch=master)](https://travis-ci.org/mmcgahan/generator-static)
+# Generator-Springrid
+[![Build Status](https://secure.travis-ci.org/mmcgahan/generator-springrid.png?branch=master)](https://travis-ci.org/mmcgahan/generator-springrid)
 
 A generator for Yeoman.
 
